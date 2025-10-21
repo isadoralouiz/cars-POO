@@ -31,21 +31,22 @@ public class DriverController {
         return driverRepository.findAll();
     }
 
+    // definir uma Exception personalizada
     @GetMapping("/drivers/{id}")
-    public Driver findDriver(@PathVariable Long id) {
+    public Driver findDriver(@PathVariable("id") Long id) {
         return driverRepository.findById(id).orElseThrow(
-            () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
-        );
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/drivers")
-    public Driver createDriver(@RequestBody Driver driver){
+    public Driver createDriver(@RequestBody Driver driver) {
         return driverRepository.save(driver);
     }
 
-    @PutMapping("/drivers/{id}")
-    public Driver fullUpdateDriver(@PathVariable("id") Long id, @RequestBody Driver driver) {
-        
+    // update
+    @PutMapping("/drivers{id}")
+    public Driver fullUpdateDriver(@PathVariable("id") Long id,
+            @RequestBody Driver driver) {
         Driver foundDriver = findDriver(id);
         foundDriver.setName(driver.getName());
         foundDriver.setBirthDate(driver.getBirthDate());
