@@ -11,12 +11,10 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Driver {
+public class Passeger {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String name;
-    LocalDate birthDate;
-    
-
+    String email;
 }
